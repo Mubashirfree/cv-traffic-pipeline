@@ -1,0 +1,855 @@
+[
+  {
+    "id": "Q_multi_bus",
+    "query": "multiple buses on the road",
+    "category": "object",
+    "relevant": [
+      "MVI_20012_002",
+      "MVI_20012_003",
+      "MVI_20012_004",
+      "MVI_20012_005",
+      "MVI_20012_006",
+      "MVI_20012_007",
+      "MVI_20034_003",
+      "MVI_20034_004",
+      "MVI_20034_005",
+      "MVI_20034_006",
+      "MVI_20034_007",
+      "MVI_20034_008"
+    ],
+    "frame": [
+      {
+        "clip": "MVI_20012_006",
+        "relevant": true,
+        "score": 0.345
+      },
+      {
+        "clip": "MVI_20012_010",
+        "relevant": false,
+        "score": 0.34
+      },
+      {
+        "clip": "MVI_20012_004",
+        "relevant": true,
+        "score": 0.34
+      },
+      {
+        "clip": "MVI_20012_009",
+        "relevant": false,
+        "score": 0.3397
+      },
+      {
+        "clip": "MVI_20012_005",
+        "relevant": true,
+        "score": 0.3376
+      },
+      {
+        "clip": "MVI_20012_002",
+        "relevant": true,
+        "score": 0.3368
+      },
+      {
+        "clip": "MVI_20012_011",
+        "relevant": false,
+        "score": 0.3338
+      },
+      {
+        "clip": "MVI_20012_008",
+        "relevant": false,
+        "score": 0.3321
+      },
+      {
+        "clip": "MVI_20012_003",
+        "relevant": true,
+        "score": 0.3286
+      },
+      {
+        "clip": "MVI_20012_001",
+        "relevant": false,
+        "score": 0.3272
+      }
+    ],
+    "crop": [
+      {
+        "clip": "MVI_20012_004",
+        "relevant": true,
+        "score": 0.28
+      },
+      {
+        "clip": "MVI_20012_001",
+        "relevant": false,
+        "score": 0.2789
+      },
+      {
+        "clip": "MVI_20012_005",
+        "relevant": true,
+        "score": 0.2787
+      },
+      {
+        "clip": "MVI_20012_002",
+        "relevant": true,
+        "score": 0.278
+      },
+      {
+        "clip": "MVI_40992_004",
+        "relevant": false,
+        "score": 0.2776
+      },
+      {
+        "clip": "MVI_20034_005",
+        "relevant": true,
+        "score": 0.2774
+      },
+      {
+        "clip": "MVI_40992_023",
+        "relevant": false,
+        "score": 0.2772
+      },
+      {
+        "clip": "MVI_40992_006",
+        "relevant": false,
+        "score": 0.2763
+      },
+      {
+        "clip": "MVI_20012_011",
+        "relevant": false,
+        "score": 0.2752
+      },
+      {
+        "clip": "MVI_40992_026",
+        "relevant": false,
+        "score": 0.2744
+      }
+    ]
+  },
+  {
+    "id": "Q_bus",
+    "query": "a bus driving on the road",
+    "category": "object",
+    "relevant": [
+      "MVI_20012_000",
+      "MVI_20012_001",
+      "MVI_20012_002",
+      "MVI_20012_003",
+      "MVI_20012_004",
+      "MVI_20012_005",
+      "MVI_20012_006",
+      "MVI_20012_007",
+      "MVI_20012_008",
+      "MVI_20012_009",
+      "MVI_20012_010",
+      "MVI_20012_011",
+      "MVI_20033_006",
+      "MVI_20033_007",
+      "MVI_20033_008",
+      "MVI_20033_009",
+      "MVI_20034_000",
+      "MVI_20034_001",
+      "MVI_20034_002",
+      "MVI_20034_003",
+      "MVI_20034_004",
+      "MVI_20034_005",
+      "MVI_20034_006",
+      "MVI_20034_007",
+      "MVI_20034_008",
+      "MVI_20034_009"
+    ],
+    "frame": [
+      {
+        "clip": "MVI_20012_009",
+        "relevant": true,
+        "score": 0.3437
+      },
+      {
+        "clip": "MVI_20012_010",
+        "relevant": true,
+        "score": 0.3383
+      },
+      {
+        "clip": "MVI_20012_011",
+        "relevant": true,
+        "score": 0.3346
+      },
+      {
+        "clip": "MVI_20012_008",
+        "relevant": true,
+        "score": 0.3318
+      },
+      {
+        "clip": "MVI_20012_006",
+        "relevant": true,
+        "score": 0.3305
+      },
+      {
+        "clip": "MVI_20012_004",
+        "relevant": true,
+        "score": 0.33
+      },
+      {
+        "clip": "MVI_20012_002",
+        "relevant": true,
+        "score": 0.3288
+      },
+      {
+        "clip": "MVI_20012_005",
+        "relevant": true,
+        "score": 0.3273
+      },
+      {
+        "clip": "MVI_20012_003",
+        "relevant": true,
+        "score": 0.3227
+      },
+      {
+        "clip": "MVI_20012_001",
+        "relevant": true,
+        "score": 0.3173
+      }
+    ],
+    "crop": [
+      {
+        "clip": "MVI_20012_004",
+        "relevant": true,
+        "score": 0.2894
+      },
+      {
+        "clip": "MVI_20012_005",
+        "relevant": true,
+        "score": 0.2887
+      },
+      {
+        "clip": "MVI_20012_002",
+        "relevant": true,
+        "score": 0.2886
+      },
+      {
+        "clip": "MVI_40992_004",
+        "relevant": false,
+        "score": 0.2884
+      },
+      {
+        "clip": "MVI_40992_015",
+        "relevant": false,
+        "score": 0.2871
+      },
+      {
+        "clip": "MVI_40992_023",
+        "relevant": false,
+        "score": 0.2869
+      },
+      {
+        "clip": "MVI_20012_001",
+        "relevant": true,
+        "score": 0.2865
+      },
+      {
+        "clip": "MVI_40992_011",
+        "relevant": false,
+        "score": 0.2841
+      },
+      {
+        "clip": "MVI_20034_005",
+        "relevant": true,
+        "score": 0.283
+      },
+      {
+        "clip": "MVI_20012_003",
+        "relevant": true,
+        "score": 0.2824
+      }
+    ]
+  },
+  {
+    "id": "Q_heavy",
+    "query": "heavy traffic with many vehicles",
+    "category": "scene",
+    "relevant": [
+      "MVI_20011_001",
+      "MVI_20011_005",
+      "MVI_20011_006",
+      "MVI_20011_007",
+      "MVI_20012_002",
+      "MVI_20012_003",
+      "MVI_20012_004",
+      "MVI_20012_005",
+      "MVI_20012_006",
+      "MVI_20034_005",
+      "MVI_20034_006",
+      "MVI_20034_007",
+      "MVI_20034_008",
+      "MVI_20034_009"
+    ],
+    "frame": [
+      {
+        "clip": "MVI_20034_004",
+        "relevant": false,
+        "score": 0.3119
+      },
+      {
+        "clip": "MVI_20012_006",
+        "relevant": true,
+        "score": 0.3036
+      },
+      {
+        "clip": "MVI_20012_005",
+        "relevant": true,
+        "score": 0.3028
+      },
+      {
+        "clip": "MVI_20034_005",
+        "relevant": true,
+        "score": 0.3023
+      },
+      {
+        "clip": "MVI_20034_003",
+        "relevant": false,
+        "score": 0.3012
+      },
+      {
+        "clip": "MVI_20034_009",
+        "relevant": true,
+        "score": 0.3011
+      },
+      {
+        "clip": "MVI_20033_009",
+        "relevant": false,
+        "score": 0.3007
+      },
+      {
+        "clip": "MVI_20012_007",
+        "relevant": false,
+        "score": 0.2989
+      },
+      {
+        "clip": "MVI_20033_007",
+        "relevant": false,
+        "score": 0.2984
+      },
+      {
+        "clip": "MVI_20032_004",
+        "relevant": false,
+        "score": 0.2981
+      }
+    ],
+    "crop": [
+      {
+        "clip": "MVI_20012_004",
+        "relevant": true,
+        "score": 0.292
+      },
+      {
+        "clip": "MVI_20012_005",
+        "relevant": true,
+        "score": 0.2901
+      },
+      {
+        "clip": "MVI_20012_001",
+        "relevant": false,
+        "score": 0.2893
+      },
+      {
+        "clip": "MVI_40992_026",
+        "relevant": false,
+        "score": 0.2893
+      },
+      {
+        "clip": "MVI_20012_002",
+        "relevant": true,
+        "score": 0.2882
+      },
+      {
+        "clip": "MVI_20012_003",
+        "relevant": true,
+        "score": 0.2877
+      },
+      {
+        "clip": "MVI_40992_023",
+        "relevant": false,
+        "score": 0.2872
+      },
+      {
+        "clip": "MVI_20012_006",
+        "relevant": true,
+        "score": 0.2869
+      },
+      {
+        "clip": "MVI_40992_006",
+        "relevant": false,
+        "score": 0.2864
+      },
+      {
+        "clip": "MVI_40992_004",
+        "relevant": false,
+        "score": 0.2863
+      }
+    ]
+  },
+  {
+    "id": "Q_empty",
+    "query": "an almost empty road with hardly any traffic",
+    "category": "scene",
+    "relevant": [
+      "MVI_20012_011",
+      "MVI_40992_002",
+      "MVI_40992_006",
+      "MVI_40992_009",
+      "MVI_40992_010",
+      "MVI_40992_021"
+    ],
+    "frame": [
+      {
+        "clip": "MVI_20032_001",
+        "relevant": false,
+        "score": 0.3081
+      },
+      {
+        "clip": "MVI_20032_004",
+        "relevant": false,
+        "score": 0.3038
+      },
+      {
+        "clip": "MVI_20033_002",
+        "relevant": false,
+        "score": 0.3036
+      },
+      {
+        "clip": "MVI_20033_003",
+        "relevant": false,
+        "score": 0.3008
+      },
+      {
+        "clip": "MVI_20032_003",
+        "relevant": false,
+        "score": 0.3001
+      },
+      {
+        "clip": "MVI_20033_009",
+        "relevant": false,
+        "score": 0.3001
+      },
+      {
+        "clip": "MVI_20034_000",
+        "relevant": false,
+        "score": 0.2994
+      },
+      {
+        "clip": "MVI_20032_000",
+        "relevant": false,
+        "score": 0.2991
+      },
+      {
+        "clip": "MVI_20032_002",
+        "relevant": false,
+        "score": 0.2975
+      },
+      {
+        "clip": "MVI_20033_004",
+        "relevant": false,
+        "score": 0.2971
+      }
+    ],
+    "crop": [
+      {
+        "clip": "MVI_40992_009",
+        "relevant": true,
+        "score": 0.2695
+      },
+      {
+        "clip": "MVI_40992_010",
+        "relevant": true,
+        "score": 0.2669
+      },
+      {
+        "clip": "MVI_40992_012",
+        "relevant": false,
+        "score": 0.2665
+      },
+      {
+        "clip": "MVI_40992_003",
+        "relevant": false,
+        "score": 0.2659
+      },
+      {
+        "clip": "MVI_40992_011",
+        "relevant": false,
+        "score": 0.2658
+      },
+      {
+        "clip": "MVI_40992_004",
+        "relevant": false,
+        "score": 0.2649
+      },
+      {
+        "clip": "MVI_40992_013",
+        "relevant": false,
+        "score": 0.2647
+      },
+      {
+        "clip": "MVI_40992_026",
+        "relevant": false,
+        "score": 0.2638
+      },
+      {
+        "clip": "MVI_40992_014",
+        "relevant": false,
+        "score": 0.2634
+      },
+      {
+        "clip": "MVI_20012_004",
+        "relevant": false,
+        "score": 0.2616
+      }
+    ]
+  },
+  {
+    "id": "Q_night_cars",
+    "query": "a night road with several cars",
+    "category": "scene",
+    "relevant": [
+      "MVI_40992_004",
+      "MVI_40992_013",
+      "MVI_40992_023",
+      "MVI_40992_024",
+      "MVI_40992_025"
+    ],
+    "frame": [
+      {
+        "clip": "MVI_40992_004",
+        "relevant": true,
+        "score": 0.3238
+      },
+      {
+        "clip": "MVI_40992_024",
+        "relevant": true,
+        "score": 0.3202
+      },
+      {
+        "clip": "MVI_40992_013",
+        "relevant": true,
+        "score": 0.3175
+      },
+      {
+        "clip": "MVI_40992_010",
+        "relevant": false,
+        "score": 0.3173
+      },
+      {
+        "clip": "MVI_40992_011",
+        "relevant": false,
+        "score": 0.3171
+      },
+      {
+        "clip": "MVI_40992_023",
+        "relevant": true,
+        "score": 0.317
+      },
+      {
+        "clip": "MVI_40992_021",
+        "relevant": false,
+        "score": 0.3158
+      },
+      {
+        "clip": "MVI_40992_014",
+        "relevant": false,
+        "score": 0.3144
+      },
+      {
+        "clip": "MVI_40992_003",
+        "relevant": false,
+        "score": 0.314
+      },
+      {
+        "clip": "MVI_40992_019",
+        "relevant": false,
+        "score": 0.3129
+      }
+    ],
+    "crop": [
+      {
+        "clip": "MVI_40992_006",
+        "relevant": false,
+        "score": 0.315
+      },
+      {
+        "clip": "MVI_40992_025",
+        "relevant": true,
+        "score": 0.313
+      },
+      {
+        "clip": "MVI_40992_026",
+        "relevant": false,
+        "score": 0.3106
+      },
+      {
+        "clip": "MVI_40992_007",
+        "relevant": false,
+        "score": 0.3064
+      },
+      {
+        "clip": "MVI_40992_014",
+        "relevant": false,
+        "score": 0.3061
+      },
+      {
+        "clip": "MVI_40992_004",
+        "relevant": true,
+        "score": 0.3061
+      },
+      {
+        "clip": "MVI_40992_010",
+        "relevant": false,
+        "score": 0.3032
+      },
+      {
+        "clip": "MVI_40992_024",
+        "relevant": true,
+        "score": 0.3028
+      },
+      {
+        "clip": "MVI_40992_015",
+        "relevant": false,
+        "score": 0.3026
+      },
+      {
+        "clip": "MVI_40992_027",
+        "relevant": false,
+        "score": 0.3024
+      }
+    ]
+  },
+  {
+    "id": "Q_day_few",
+    "query": "a daytime road with a few cars",
+    "category": "scene",
+    "relevant": [
+      "MVI_20032_000",
+      "MVI_20032_001",
+      "MVI_20032_002",
+      "MVI_20032_003",
+      "MVI_20032_004",
+      "MVI_20033_000",
+      "MVI_20033_001",
+      "MVI_20033_002",
+      "MVI_20033_003",
+      "MVI_20033_004",
+      "MVI_20033_005"
+    ],
+    "frame": [
+      {
+        "clip": "MVI_20032_004",
+        "relevant": true,
+        "score": 0.334
+      },
+      {
+        "clip": "MVI_20032_003",
+        "relevant": true,
+        "score": 0.3279
+      },
+      {
+        "clip": "MVI_20032_001",
+        "relevant": true,
+        "score": 0.3246
+      },
+      {
+        "clip": "MVI_20034_003",
+        "relevant": false,
+        "score": 0.3244
+      },
+      {
+        "clip": "MVI_20033_009",
+        "relevant": false,
+        "score": 0.3243
+      },
+      {
+        "clip": "MVI_20033_002",
+        "relevant": true,
+        "score": 0.3238
+      },
+      {
+        "clip": "MVI_20033_003",
+        "relevant": true,
+        "score": 0.3197
+      },
+      {
+        "clip": "MVI_20032_002",
+        "relevant": true,
+        "score": 0.3195
+      },
+      {
+        "clip": "MVI_20034_004",
+        "relevant": false,
+        "score": 0.3193
+      },
+      {
+        "clip": "MVI_20034_000",
+        "relevant": false,
+        "score": 0.3188
+      }
+    ],
+    "crop": [
+      {
+        "clip": "MVI_20012_005",
+        "relevant": false,
+        "score": 0.2892
+      },
+      {
+        "clip": "MVI_20012_004",
+        "relevant": false,
+        "score": 0.2882
+      },
+      {
+        "clip": "MVI_20012_001",
+        "relevant": false,
+        "score": 0.2866
+      },
+      {
+        "clip": "MVI_40992_004",
+        "relevant": false,
+        "score": 0.2863
+      },
+      {
+        "clip": "MVI_20012_003",
+        "relevant": false,
+        "score": 0.2861
+      },
+      {
+        "clip": "MVI_40992_026",
+        "relevant": false,
+        "score": 0.2857
+      },
+      {
+        "clip": "MVI_40992_011",
+        "relevant": false,
+        "score": 0.2849
+      },
+      {
+        "clip": "MVI_20012_002",
+        "relevant": false,
+        "score": 0.2846
+      },
+      {
+        "clip": "MVI_20012_006",
+        "relevant": false,
+        "score": 0.2846
+      },
+      {
+        "clip": "MVI_20034_005",
+        "relevant": false,
+        "score": 0.2842
+      }
+    ]
+  },
+  {
+    "id": "Q_near",
+    "query": "cars close to the camera",
+    "category": "scene",
+    "relevant": [
+      "MVI_20012_005",
+      "MVI_20012_008"
+    ],
+    "frame": [
+      {
+        "clip": "MVI_20032_004",
+        "relevant": false,
+        "score": 0.3016
+      },
+      {
+        "clip": "MVI_40992_004",
+        "relevant": false,
+        "score": 0.2983
+      },
+      {
+        "clip": "MVI_40992_024",
+        "relevant": false,
+        "score": 0.2936
+      },
+      {
+        "clip": "MVI_40992_011",
+        "relevant": false,
+        "score": 0.2932
+      },
+      {
+        "clip": "MVI_40992_003",
+        "relevant": false,
+        "score": 0.2932
+      },
+      {
+        "clip": "MVI_40992_013",
+        "relevant": false,
+        "score": 0.2918
+      },
+      {
+        "clip": "MVI_20034_004",
+        "relevant": false,
+        "score": 0.2914
+      },
+      {
+        "clip": "MVI_20033_009",
+        "relevant": false,
+        "score": 0.2908
+      },
+      {
+        "clip": "MVI_20034_003",
+        "relevant": false,
+        "score": 0.2906
+      },
+      {
+        "clip": "MVI_20032_003",
+        "relevant": false,
+        "score": 0.2902
+      }
+    ],
+    "crop": [
+      {
+        "clip": "MVI_20012_005",
+        "relevant": true,
+        "score": 0.3057
+      },
+      {
+        "clip": "MVI_40992_013",
+        "relevant": false,
+        "score": 0.3053
+      },
+      {
+        "clip": "MVI_20012_004",
+        "relevant": false,
+        "score": 0.3045
+      },
+      {
+        "clip": "MVI_40992_004",
+        "relevant": false,
+        "score": 0.3044
+      },
+      {
+        "clip": "MVI_20012_001",
+        "relevant": false,
+        "score": 0.3043
+      },
+      {
+        "clip": "MVI_40992_026",
+        "relevant": false,
+        "score": 0.3033
+      },
+      {
+        "clip": "MVI_20012_002",
+        "relevant": false,
+        "score": 0.3031
+      },
+      {
+        "clip": "MVI_20012_003",
+        "relevant": false,
+        "score": 0.3026
+      },
+      {
+        "clip": "MVI_20012_006",
+        "relevant": false,
+        "score": 0.3013
+      },
+      {
+        "clip": "MVI_40992_015",
+        "relevant": false,
+        "score": 0.3011
+      }
+    ]
+  }
+]

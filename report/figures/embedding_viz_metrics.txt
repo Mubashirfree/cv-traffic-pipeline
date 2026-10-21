@@ -1,0 +1,10 @@
+PART A: per-object crop embeddings (labels = detector class, conf >= 0.5)
+crops: 816  counts: {'car': 300, 'person': 300, 'bus': 194, 'truck': 22}
+silhouette (cosine, 512-d): 0.390
+5-NN accuracy: 0.964   (majority-class baseline 0.368)
+5-NN balanced accuracy: 0.782   (chance 0.250)
+NOTE: labels come from YOLO, which misclassifies bus/truck/van, so this is a lower bound.
+
+PART B: clip-level embeddings, leave-one-out 3-NN camera-ID accuracy
+  frame: 0.863   (majority-camera baseline 0.384)
+  crop: 0.904   (majority-camera baseline 0.384)

@@ -1,0 +1,143 @@
+{
+  "queries": [
+    {
+      "id": "Q_multi_bus",
+      "query": "multiple buses on the road",
+      "category": "object",
+      "label_source": "UA-DETRAC XML ground truth",
+      "rule": "bus_med >= 2",
+      "relevant_clips": [
+        "MVI_20012_002",
+        "MVI_20012_003",
+        "MVI_20012_004",
+        "MVI_20012_005",
+        "MVI_20012_006",
+        "MVI_20012_007",
+        "MVI_20034_003",
+        "MVI_20034_004",
+        "MVI_20034_005",
+        "MVI_20034_006",
+        "MVI_20034_007",
+        "MVI_20034_008"
+      ]
+    },
+    {
+      "id": "Q_bus",
+      "query": "a bus driving on the road",
+      "category": "object",
+      "label_source": "UA-DETRAC XML ground truth",
+      "rule": "bus_med >= 1",
+      "relevant_clips": [
+        "MVI_20012_000",
+        "MVI_20012_001",
+        "MVI_20012_002",
+        "MVI_20012_003",
+        "MVI_20012_004",
+        "MVI_20012_005",
+        "MVI_20012_006",
+        "MVI_20012_007",
+        "MVI_20012_008",
+        "MVI_20012_009",
+        "MVI_20012_010",
+        "MVI_20012_011",
+        "MVI_20033_006",
+        "MVI_20033_007",
+        "MVI_20033_008",
+        "MVI_20033_009",
+        "MVI_20034_000",
+        "MVI_20034_001",
+        "MVI_20034_002",
+        "MVI_20034_003",
+        "MVI_20034_004",
+        "MVI_20034_005",
+        "MVI_20034_006",
+        "MVI_20034_007",
+        "MVI_20034_008",
+        "MVI_20034_009"
+      ]
+    },
+    {
+      "id": "Q_heavy",
+      "query": "heavy traffic with many vehicles",
+      "category": "scene",
+      "label_source": "UA-DETRAC XML ground truth",
+      "rule": "total_med >= 13",
+      "relevant_clips": [
+        "MVI_20011_001",
+        "MVI_20011_005",
+        "MVI_20011_006",
+        "MVI_20011_007",
+        "MVI_20012_002",
+        "MVI_20012_003",
+        "MVI_20012_004",
+        "MVI_20012_005",
+        "MVI_20012_006",
+        "MVI_20034_005",
+        "MVI_20034_006",
+        "MVI_20034_007",
+        "MVI_20034_008",
+        "MVI_20034_009"
+      ]
+    },
+    {
+      "id": "Q_empty",
+      "query": "an almost empty road with hardly any traffic",
+      "category": "scene",
+      "label_source": "UA-DETRAC XML ground truth",
+      "rule": "total_med <= 1",
+      "relevant_clips": [
+        "MVI_20012_011",
+        "MVI_40992_002",
+        "MVI_40992_006",
+        "MVI_40992_009",
+        "MVI_40992_010",
+        "MVI_40992_021"
+      ]
+    },
+    {
+      "id": "Q_night_cars",
+      "query": "a night road with several cars",
+      "category": "scene",
+      "label_source": "UA-DETRAC XML ground truth",
+      "rule": "night camera and total_med >= 4",
+      "relevant_clips": [
+        "MVI_40992_004",
+        "MVI_40992_013",
+        "MVI_40992_023",
+        "MVI_40992_024",
+        "MVI_40992_025"
+      ]
+    },
+    {
+      "id": "Q_day_few",
+      "query": "a daytime road with a few cars",
+      "category": "scene",
+      "label_source": "UA-DETRAC XML ground truth",
+      "rule": "day, no bus, 3 <= total_med <= 7",
+      "relevant_clips": [
+        "MVI_20032_000",
+        "MVI_20032_001",
+        "MVI_20032_002",
+        "MVI_20032_003",
+        "MVI_20032_004",
+        "MVI_20033_000",
+        "MVI_20033_001",
+        "MVI_20033_002",
+        "MVI_20033_003",
+        "MVI_20033_004",
+        "MVI_20033_005"
+      ]
+    },
+    {
+      "id": "Q_near",
+      "query": "cars close to the camera",
+      "category": "scene",
+      "label_source": "manual visual review",
+      "rule": "manual",
+      "relevant_clips": [
+        "MVI_20012_005",
+        "MVI_20012_008"
+      ]
+    }
+  ]
+}

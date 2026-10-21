@@ -1,0 +1,54 @@
+{
+  "min_logged_confidence": 0.1,
+  "detection": {
+    "D0 original (3 classes, no ignored regions)": {
+      "mAP50": 0.2939084204695741,
+      "mAP50_95": 0.11801727634445422,
+      "per_class_AP50": {
+        "car": 0.14812238149530743,
+        "bus": 0.7038626600614627,
+        "truck": 0.029740219851952236
+      },
+      "n_gt": 3851,
+      "n_pred": 5709
+    },
+    "D1 + ignored regions": {
+      "mAP50": 0.31417639684482906,
+      "mAP50_95": 0.12223112769132331,
+      "per_class_AP50": {
+        "car": 0.20872331572133485,
+        "bus": 0.7038943237444363,
+        "truck": 0.0299115510687162
+      },
+      "n_gt": 3851,
+      "n_pred": 1844
+    },
+    "D2 + single 'vehicle' class (standard protocol)": {
+      "mAP50": 0.2726949828445133,
+      "mAP50_95": 0.069375208904563,
+      "per_class_AP50": {
+        "vehicle": 0.2726949828445133
+      },
+      "n_gt": 3872,
+      "n_pred": 1844
+    }
+  },
+  "tracking": {
+    "T0 original (no ignored regions)": {
+      "MOTA": -0.7169566346403531,
+      "IDF1": 0.28962777080719365,
+      "ID_switches": 36,
+      "false_positives": 4219,
+      "misses": 2357,
+      "gt_objects": 3851
+    },
+    "T1 + ignored regions": {
+      "MOTA": 0.22150090885484286,
+      "IDF1": 0.44811237928007025,
+      "ID_switches": 31,
+      "false_positives": 480,
+      "misses": 2487,
+      "gt_objects": 3851
+    }
+  }
+}

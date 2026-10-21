@@ -1,0 +1,502 @@
+[
+  {
+    "gt_id": 5,
+    "start_frame": 31,
+    "end_frame": 31,
+    "n_frames": 1,
+    "pred_before": 18,
+    "pred_after": 18,
+    "status": "survived",
+    "camera": "MVI_20011"
+  },
+  {
+    "gt_id": 5,
+    "start_frame": 51,
+    "end_frame": 51,
+    "n_frames": 1,
+    "pred_before": 18,
+    "pred_after": 18,
+    "status": "survived",
+    "camera": "MVI_20011"
+  },
+  {
+    "gt_id": 8,
+    "start_frame": 51,
+    "end_frame": 81,
+    "n_frames": 4,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20011"
+  },
+  {
+    "gt_id": 10,
+    "start_frame": 61,
+    "end_frame": 81,
+    "n_frames": 3,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20011"
+  },
+  {
+    "gt_id": 29,
+    "start_frame": 511,
+    "end_frame": 511,
+    "n_frames": 1,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20011"
+  },
+  {
+    "gt_id": 37,
+    "start_frame": 511,
+    "end_frame": 551,
+    "n_frames": 5,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20011"
+  },
+  {
+    "gt_id": 40,
+    "start_frame": 521,
+    "end_frame": 551,
+    "n_frames": 4,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20011"
+  },
+  {
+    "gt_id": 47,
+    "start_frame": 631,
+    "end_frame": 641,
+    "n_frames": 2,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20011"
+  },
+  {
+    "gt_id": 3,
+    "start_frame": 41,
+    "end_frame": 151,
+    "n_frames": 12,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 3,
+    "start_frame": 171,
+    "end_frame": 171,
+    "n_frames": 1,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 3,
+    "start_frame": 191,
+    "end_frame": 201,
+    "n_frames": 2,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 3,
+    "start_frame": 221,
+    "end_frame": 271,
+    "n_frames": 6,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 11,
+    "start_frame": 61,
+    "end_frame": 61,
+    "n_frames": 1,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 12,
+    "start_frame": 61,
+    "end_frame": 61,
+    "n_frames": 1,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 14,
+    "start_frame": 41,
+    "end_frame": 151,
+    "n_frames": 12,
+    "pred_before": 12,
+    "pred_after": 12,
+    "status": "survived",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 14,
+    "start_frame": 171,
+    "end_frame": 171,
+    "n_frames": 1,
+    "pred_before": 12,
+    "pred_after": 12,
+    "status": "survived",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 14,
+    "start_frame": 191,
+    "end_frame": 201,
+    "n_frames": 2,
+    "pred_before": 12,
+    "pred_after": 12,
+    "status": "survived",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 14,
+    "start_frame": 221,
+    "end_frame": 271,
+    "n_frames": 6,
+    "pred_before": 12,
+    "pred_after": 12,
+    "status": "survived",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 14,
+    "start_frame": 311,
+    "end_frame": 341,
+    "n_frames": 4,
+    "pred_before": 12,
+    "pred_after": 12,
+    "status": "survived",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 15,
+    "start_frame": 311,
+    "end_frame": 341,
+    "n_frames": 4,
+    "pred_before": 136,
+    "pred_after": 136,
+    "status": "survived",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 16,
+    "start_frame": 271,
+    "end_frame": 271,
+    "n_frames": 1,
+    "pred_before": 153,
+    "pred_after": 153,
+    "status": "survived",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 22,
+    "start_frame": 521,
+    "end_frame": 551,
+    "n_frames": 4,
+    "pred_before": 291,
+    "pred_after": 291,
+    "status": "survived",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 27,
+    "start_frame": 371,
+    "end_frame": 371,
+    "n_frames": 1,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 28,
+    "start_frame": 371,
+    "end_frame": 371,
+    "n_frames": 1,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 38,
+    "start_frame": 521,
+    "end_frame": 551,
+    "n_frames": 4,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20012"
+  },
+  {
+    "gt_id": 22,
+    "start_frame": 411,
+    "end_frame": 411,
+    "n_frames": 1,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20034"
+  },
+  {
+    "gt_id": 22,
+    "start_frame": 431,
+    "end_frame": 441,
+    "n_frames": 2,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20034"
+  },
+  {
+    "gt_id": 25,
+    "start_frame": 431,
+    "end_frame": 441,
+    "n_frames": 2,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20034"
+  },
+  {
+    "gt_id": 27,
+    "start_frame": 541,
+    "end_frame": 641,
+    "n_frames": 11,
+    "pred_before": 325,
+    "pred_after": 438,
+    "status": "switched",
+    "camera": "MVI_20034"
+  },
+  {
+    "gt_id": 30,
+    "start_frame": 611,
+    "end_frame": 661,
+    "n_frames": 6,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20034"
+  },
+  {
+    "gt_id": 30,
+    "start_frame": 681,
+    "end_frame": 681,
+    "n_frames": 1,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_20034"
+  },
+  {
+    "gt_id": 31,
+    "start_frame": 611,
+    "end_frame": 661,
+    "n_frames": 6,
+    "pred_before": 359,
+    "pred_after": 359,
+    "status": "survived",
+    "camera": "MVI_20034"
+  },
+  {
+    "gt_id": 31,
+    "start_frame": 681,
+    "end_frame": 681,
+    "n_frames": 1,
+    "pred_before": 359,
+    "pred_after": 359,
+    "status": "survived",
+    "camera": "MVI_20034"
+  },
+  {
+    "gt_id": 48,
+    "start_frame": 251,
+    "end_frame": 331,
+    "n_frames": 9,
+    "pred_before": 1,
+    "pred_after": 238,
+    "status": "switched",
+    "camera": "MVI_20034"
+  },
+  {
+    "gt_id": 49,
+    "start_frame": 251,
+    "end_frame": 331,
+    "n_frames": 9,
+    "pred_before": 159,
+    "pred_after": 159,
+    "status": "survived",
+    "camera": "MVI_20034"
+  },
+  {
+    "gt_id": 5,
+    "start_frame": 251,
+    "end_frame": 281,
+    "n_frames": 4,
+    "pred_before": null,
+    "pred_after": 42,
+    "status": "lost",
+    "camera": "MVI_40992"
+  },
+  {
+    "gt_id": 6,
+    "start_frame": 251,
+    "end_frame": 281,
+    "n_frames": 4,
+    "pred_before": 1,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_40992"
+  },
+  {
+    "gt_id": 9,
+    "start_frame": 371,
+    "end_frame": 391,
+    "n_frames": 3,
+    "pred_before": null,
+    "pred_after": 69,
+    "status": "lost",
+    "camera": "MVI_40992"
+  },
+  {
+    "gt_id": 11,
+    "start_frame": 501,
+    "end_frame": 501,
+    "n_frames": 1,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_40992"
+  },
+  {
+    "gt_id": 12,
+    "start_frame": 501,
+    "end_frame": 501,
+    "n_frames": 1,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_40992"
+  },
+  {
+    "gt_id": 12,
+    "start_frame": 591,
+    "end_frame": 601,
+    "n_frames": 2,
+    "pred_before": 106,
+    "pred_after": 62,
+    "status": "switched",
+    "camera": "MVI_40992"
+  },
+  {
+    "gt_id": 13,
+    "start_frame": 591,
+    "end_frame": 601,
+    "n_frames": 2,
+    "pred_before": null,
+    "pred_after": 106,
+    "status": "lost",
+    "camera": "MVI_40992"
+  },
+  {
+    "gt_id": 31,
+    "start_frame": 1521,
+    "end_frame": 1541,
+    "n_frames": 3,
+    "pred_before": null,
+    "pred_after": 331,
+    "status": "lost",
+    "camera": "MVI_40992"
+  },
+  {
+    "gt_id": 33,
+    "start_frame": 1741,
+    "end_frame": 1751,
+    "n_frames": 2,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_40992"
+  },
+  {
+    "gt_id": 34,
+    "start_frame": 1741,
+    "end_frame": 1751,
+    "n_frames": 2,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_40992"
+  },
+  {
+    "gt_id": 36,
+    "start_frame": 1871,
+    "end_frame": 1881,
+    "n_frames": 2,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_40992"
+  },
+  {
+    "gt_id": 37,
+    "start_frame": 1821,
+    "end_frame": 1831,
+    "n_frames": 2,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_40992"
+  },
+  {
+    "gt_id": 38,
+    "start_frame": 1821,
+    "end_frame": 1831,
+    "n_frames": 2,
+    "pred_before": null,
+    "pred_after": null,
+    "status": "lost",
+    "camera": "MVI_40992"
+  },
+  {
+    "gt_id": 38,
+    "start_frame": 1871,
+    "end_frame": 1881,
+    "n_frames": 2,
+    "pred_before": null,
+    "pred_after": 423,
+    "status": "lost",
+    "camera": "MVI_40992"
+  },
+  {
+    "gt_id": 39,
+    "start_frame": 1941,
+    "end_frame": 1951,
+    "n_frames": 2,
+    "pred_before": 305,
+    "pred_after": 305,
+    "status": "survived",
+    "camera": "MVI_40992"
+  }
+]

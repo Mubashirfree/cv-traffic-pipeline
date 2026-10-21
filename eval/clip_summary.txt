@@ -1,0 +1,74 @@
+clip_id           camera      timestamp   zone        entity counts (by class)
+MVI_20011_000     MVI_20011   00:00:00    Far_Zone    {'car': 18, 'person': 9, 'truck': 1}
+MVI_20011_001     MVI_20011   00:00:03    Far_Zone    {'person': 6, 'car': 16}
+MVI_20011_002     MVI_20011   00:00:06    Far_Zone    {'person': 6, 'car': 17}
+MVI_20011_003     MVI_20011   00:00:09    Far_Zone    {'person': 6, 'car': 19, 'bus': 2}
+MVI_20011_004     MVI_20011   00:00:12    Mid_Zone    {'person': 6, 'car': 16}
+MVI_20011_005     MVI_20011   00:00:15    Far_Zone    {'car': 16, 'person': 4}
+MVI_20011_006     MVI_20011   00:00:18    Far_Zone    {'car': 19, 'person': 3}
+MVI_20011_007     MVI_20011   00:00:21    Near_Zone   {'car': 19, 'person': 5, 'truck': 1, 'bus': 1}
+MVI_20012_000     MVI_20012   00:00:00    Far_Zone    {'car': 20, 'person': 6, 'bus': 2}
+MVI_20012_001     MVI_20012   00:00:03    Far_Zone    {'car': 18, 'bus': 2, 'person': 4}
+MVI_20012_002     MVI_20012   00:00:06    Mid_Zone    {'car': 19, 'bus': 3, 'person': 3}
+MVI_20012_003     MVI_20012   00:00:09    Far_Zone    {'car': 21, 'bus': 2, 'person': 4}
+MVI_20012_004     MVI_20012   00:00:12    Mid_Zone    {'truck': 1, 'car': 19, 'bus': 3, 'person': 4}
+MVI_20012_005     MVI_20012   00:00:15    Near_Zone   {'car': 24, 'bus': 4, 'person': 1, 'truck': 1}
+MVI_20012_006     MVI_20012   00:00:18    Far_Zone    {'car': 28, 'bus': 3, 'person': 5, 'truck': 1}
+MVI_20012_007     MVI_20012   00:00:21    Mid_Zone    {'bus': 4, 'car': 19, 'person': 7, 'truck': 1}
+MVI_20012_008     MVI_20012   00:00:24    Near_Zone   {'bus': 1, 'car': 22, 'person': 5}
+MVI_20012_009     MVI_20012   00:00:27    Far_Zone    {'bus': 1, 'car': 17, 'person': 2, 'truck': 1}
+MVI_20012_010     MVI_20012   00:00:30    None        {'person': 4, 'bus': 2, 'car': 11, 'truck': 2}
+MVI_20012_011     MVI_20012   00:00:33    None        {'bus': 2, 'car': 12, 'truck': 2, 'person': 3}
+MVI_20032_000     MVI_20032   00:00:00    None        {'car': 22, 'person': 4}
+MVI_20032_001     MVI_20032   00:00:03    None        {'car': 20, 'person': 3}
+MVI_20032_002     MVI_20032   00:00:06    None        {'car': 20, 'person': 4}
+MVI_20032_003     MVI_20032   00:00:09    None        {'car': 19, 'person': 3}
+MVI_20032_004     MVI_20032   00:00:12    None        {'car': 17, 'person': 5}
+MVI_20033_000     MVI_20033   00:00:00    None        {'car': 20, 'person': 3, 'truck': 1}
+MVI_20033_001     MVI_20033   00:00:03    None        {'car': 15, 'person': 3}
+MVI_20033_002     MVI_20033   00:00:06    None        {'car': 20, 'person': 3}
+MVI_20033_003     MVI_20033   00:00:09    None        {'car': 19, 'person': 3}
+MVI_20033_004     MVI_20033   00:00:12    None        {'car': 20, 'person': 3}
+MVI_20033_005     MVI_20033   00:00:15    None        {'car': 21, 'person': 2}
+MVI_20033_006     MVI_20033   00:00:18    None        {'car': 20, 'person': 4, 'truck': 1, 'bus': 1}
+MVI_20033_007     MVI_20033   00:00:21    None        {'car': 19, 'person': 4, 'truck': 1, 'bus': 1}
+MVI_20033_008     MVI_20033   00:00:24    None        {'car': 18, 'person': 3, 'bus': 1}
+MVI_20033_009     MVI_20033   00:00:27    None        {'car': 17, 'person': 4, 'bus': 1}
+MVI_20034_000     MVI_20034   00:00:00    None        {'car': 23, 'person': 3, 'bus': 1}
+MVI_20034_001     MVI_20034   00:00:03    None        {'car': 21, 'person': 3, 'bus': 1}
+MVI_20034_002     MVI_20034   00:00:06    None        {'car': 21, 'person': 2, 'bus': 1}
+MVI_20034_003     MVI_20034   00:00:09    Near_Zone   {'car': 20, 'person': 3, 'bus': 2}
+MVI_20034_004     MVI_20034   00:00:12    Near_Zone   {'car': 22, 'person': 3, 'bus': 3}
+MVI_20034_005     MVI_20034   00:00:15    None        {'car': 22, 'person': 4, 'bus': 3, 'truck': 1}
+MVI_20034_006     MVI_20034   00:00:18    None        {'car': 24, 'person': 4, 'bus': 3, 'truck': 2}
+MVI_20034_007     MVI_20034   00:00:21    None        {'car': 25, 'person': 6, 'bus': 2, 'truck': 4}
+MVI_20034_008     MVI_20034   00:00:24    None        {'car': 28, 'person': 6, 'bus': 2, 'truck': 3}
+MVI_20034_009     MVI_20034   00:00:27    None        {'person': 7, 'car': 28, 'bus': 1, 'truck': 1}
+MVI_40992_000     MVI_40992   00:00:00    Near_Zone   {'car': 4, 'person': 2}
+MVI_40992_001     MVI_40992   00:00:03    Far_Zone    {'car': 3, 'person': 1}
+MVI_40992_002     MVI_40992   00:00:06    Far_Zone    {'car': 4, 'person': 1}
+MVI_40992_003     MVI_40992   00:00:09    Near_Zone   {'car': 3, 'person': 1, 'truck': 1}
+MVI_40992_004     MVI_40992   00:00:12    Near_Zone   {'car': 6}
+MVI_40992_005     MVI_40992   00:00:15    None        {'car': 3}
+MVI_40992_006     MVI_40992   00:00:18    Near_Zone   {'car': 3}
+MVI_40992_007     MVI_40992   00:00:21    None        {'car': 1}
+MVI_40992_008     MVI_40992   00:00:24    None        {'car': 4}
+MVI_40992_009     MVI_40992   00:00:27    None        {'car': 1}
+MVI_40992_010     MVI_40992   00:00:30    None        {'car': 1}
+MVI_40992_011     MVI_40992   00:00:33    None        {'car': 1}
+MVI_40992_012     MVI_40992   00:00:36    None        {'truck': 1, 'car': 2}
+MVI_40992_013     MVI_40992   00:00:39    None        {'car': 3}
+MVI_40992_014     MVI_40992   00:00:42    None        {'car': 5}
+MVI_40992_015     MVI_40992   00:00:45    None        {'car': 4}
+MVI_40992_016     MVI_40992   00:00:48    None        {'car': 5}
+MVI_40992_017     MVI_40992   00:00:51    Mid_Zone    {'person': 3, 'car': 3}
+MVI_40992_018     MVI_40992   00:00:54    Far_Zone    {'car': 3, 'person': 1}
+MVI_40992_019     MVI_40992   00:00:57    None        {'car': 5, 'person': 1}
+MVI_40992_020     MVI_40992   00:01:00    None        {'car': 4, 'person': 1}
+MVI_40992_021     MVI_40992   00:01:03    Far_Zone    {'car': 2, 'person': 1}
+MVI_40992_022     MVI_40992   00:01:06    Far_Zone    {'person': 1}
+MVI_40992_023     MVI_40992   00:01:09    None        {'person': 1, 'car': 2}
+MVI_40992_024     MVI_40992   00:01:12    None        {'car': 5}
+MVI_40992_025     MVI_40992   00:01:15    None        {'car': 6}
+MVI_40992_026     MVI_40992   00:01:18    None        {'car': 5}
+MVI_40992_027     MVI_40992   00:01:21    None        {'car': 3}

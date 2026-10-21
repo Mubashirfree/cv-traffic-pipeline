@@ -1,0 +1,77 @@
+{
+  "hardware": {
+    "python": "3.14.4",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "cpu": "",
+    "torch": "2.14.0+cu130",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU"
+  },
+  "detection": {
+    "GPU detect only": {
+      "n": 200,
+      "mean_ms": 8.42016853500354,
+      "median_ms": 7.576875500006963,
+      "p95_ms": 11.258078000025762,
+      "fps": 118.7624684521329,
+      "realtime_x": 4.750498738085316,
+      "preprocess_ms": 1.0462445799993247,
+      "inference_ms": 5.475142624998739,
+      "postprocess_ms": 1.589954784999179
+    },
+    "GPU detect + ByteTrack": {
+      "n": 200,
+      "mean_ms": 11.039114204999976,
+      "median_ms": 9.709072499987315,
+      "p95_ms": 14.804904000015995,
+      "fps": 90.58697839606255,
+      "realtime_x": 3.623479135842502,
+      "preprocess_ms": 1.0676382600001944,
+      "inference_ms": 5.837390789999972,
+      "postprocess_ms": 1.6782853350019877
+    },
+    "CPU detect only": {
+      "n": 60,
+      "mean_ms": 29.31431716666566,
+      "median_ms": 29.131092999961083,
+      "p95_ms": 33.456283999953484,
+      "fps": 34.11302382772658,
+      "realtime_x": 1.3645209531090632,
+      "preprocess_ms": 1.5057468666678158,
+      "inference_ms": 26.612099583335674,
+      "postprocess_ms": 0.8402142166715976
+    },
+    "CPU detect + ByteTrack": {
+      "n": 60,
+      "mean_ms": 31.16872730000182,
+      "median_ms": 31.339978999994855,
+      "p95_ms": 35.358669000004284,
+      "fps": 32.08344025005928,
+      "realtime_x": 1.2833376100023712,
+      "preprocess_ms": 1.369498950000055,
+      "inference_ms": 25.650210466665158,
+      "postprocess_ms": 0.9173108166692145
+    }
+  },
+  "query": {
+    "cold_start_s": 1.2159331860000293,
+    "n_queries": 7,
+    "repeats": 10,
+    "frame": {
+      "n": 70,
+      "mean_ms": 13.584420200001139,
+      "median_ms": 10.696457999983977,
+      "p95_ms": 26.981212999999116,
+      "text_encode_mean_ms": 12.74442800001907,
+      "qdrant_and_overhead_mean_ms": -2.047970000035093
+    },
+    "crop": {
+      "n": 70,
+      "mean_ms": 12.88372215714568,
+      "median_ms": 9.24344499998142,
+      "p95_ms": 25.687616000027447,
+      "text_encode_mean_ms": 7.351027000026988,
+      "qdrant_and_overhead_mean_ms": 1.8924179999544322
+    }
+  }
+}
