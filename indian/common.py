@@ -16,7 +16,7 @@ CLASS_MAP = {
     "three-wheeler": "auto_rickshaw",
     "two-wheeler": "motorcycle",
     "bicycle": "bicycle",
-    "other": None,
+    "other": None, "others": None,
 }
 
 COCO_TO_OURS = {2: 0, 5: 1, 7: 2, 3: 4, 1: 5}

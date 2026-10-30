@@ -6,3 +6,5 @@ __pycache__/
 *.pyc
 *.mp4
 *.zip
+apply_frontend.sh
+indian_run*.log

@@ -1,0 +1,37 @@
+{
+ "label": "detrac_ft",
+ "model": "models/detrac_best.pt",
+ "split": "test",
+ "n_images": 914,
+ "n_gt": 10603,
+ "mAP50_covered": 0.11701755776048321,
+ "mAP50_95_covered": 0.07012208881891878,
+ "mAP50_all6": 0.058508778880241606,
+ "mAP50_95_all6": 0.03506104440945939,
+ "per_class": {
+  "car": {
+   "AP50": "0.268",
+   "AP50_95": "0.161"
+  },
+  "bus": {
+   "AP50": "0.076",
+   "AP50_95": "0.046"
+  },
+  "truck": {
+   "AP50": "0.008",
+   "AP50_95": "0.003"
+  },
+  "auto_rickshaw": {
+   "AP50": "n/a (class not in model)",
+   "AP50_95": "n/a"
+  },
+  "motorcycle": {
+   "AP50": "n/a (class not in model)",
+   "AP50_95": "n/a"
+  },
+  "bicycle": {
+   "AP50": "n/a (class not in model)",
+   "AP50_95": "n/a"
+  }
+ }
+}

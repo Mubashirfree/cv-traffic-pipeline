@@ -12,7 +12,7 @@ from indian.common import UVH_DIR
 
 REPO = "iisc-aim/UVH-26"
 ANN = {"train": "UVH-26-Train/UVH-26-MV-Train.json", "val": "UVH-26-Val/UVH-26-MV-Val.json"}
-IMG_PREFIX = {"train": "UVH-26-Train/images/", "val": "UVH-26-Val/images/"}
+IMG_PREFIX = {"train": "UVH-26-Train/data/", "val": "UVH-26-Val/data/"}
 EXTS = (".png", ".jpg", ".jpeg")
 
 

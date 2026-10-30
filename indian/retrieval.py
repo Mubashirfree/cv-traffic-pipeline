@@ -107,9 +107,11 @@ def evaluate(args):
     queries = make_queries(meta)
     Ks = [1, 3, 5, 10]
     rows = []
-    for etype in ("frame", "crop"):
-        E = z[etype]
+    for etype in ("frame", "crop", "both"):
+        E = z["frame"] if etype == "both" else z[etype]
         valid = np.linalg.norm(E, axis=1) > 0
+        Ec = z["crop"]
+        valid_c = np.linalg.norm(Ec, axis=1) > 0
         for ens in (False, True):
             P = {k: [] for k in Ks}; RR = []
             for q, rel in queries:
@@ -117,7 +119,10 @@ def evaluate(args):
                 if not rel_v:
                     continue
                 t = np.array(embed_text_ensemble(q) if ens else embed_text(q), dtype="float32")
-                sims = np.where(valid, E @ t, -9)
+                if etype == "both":
+                    sims = np.where(valid, 0.7 * (E @ t) + 0.3 * np.where(valid_c, Ec @ t, E @ t), -9)
+                else:
+                    sims = np.where(valid, E @ t, -9)
                 order = np.argsort(-sims)
                 hits = [int(i in rel_v) for i in order]
                 for k in Ks:
@@ -129,7 +134,7 @@ def evaluate(args):
           "| embedding | prompt ensemble | " + " | ".join(f"P@{k}" for k in Ks) + " | MRR |",
           "|---|---|" + "---|" * (len(Ks) + 1)]
     for e, ens, P, mrr in rows:
-        md.append(f"| {e} | {'yes' if ens else 'no'} | " + " | ".join(f"{P[k]:.3f}" for k in Ks) + f" | {mrr:.3f} |")
+        md.append(f"| {'frame+crop (combined)' if e == 'both' else e} | {'yes' if ens else 'no'} | " + " | ".join(f"{P[k]:.3f}" for k in Ks) + f" | {mrr:.3f} |")
     md += ["", f"Random-ranking baseline (mean fraction of relevant images): {prev:.3f}", "",
            "Queries and number of relevant images (from annotation counts):", ""]
     md += [f"- \"{q}\": {len(r)} relevant" for q, r in queries]
