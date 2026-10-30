@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Traffic Clip Search</title>
+<style>
+:root{
+  --ink:#17212b; --muted:#5a6672; --paper:#e8ebee; --card:#ffffff; --line:#cdd3d9;
+  --blue:#0b5fa5; --blue-d:#084a83; --green:#1f7a4d; --amber:#b46a00; --red:#b3261e;
+  --car:#0b5fa5; --bus:#b46a00; --truck:#6b4aa0; --auto_rickshaw:#1f7a4d; --motorcycle:#c2410c; --bicycle:#0e7490;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+header{background:var(--ink);color:#fff}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:14px;padding-bottom:0}
+h1{font-size:1.15rem;margin:0 0 12px;font-weight:650;letter-spacing:.01em}
+nav{display:flex;gap:4px}
+nav button{background:none;border:0;color:#b9c3cc;font:inherit;padding:10px 16px;cursor:pointer;border-bottom:3px solid transparent}
+nav button[aria-selected=true]{color:#fff;border-bottom-color:#5fb0f5}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible,video:focus-visible{outline:3px solid #5fb0f5;outline-offset:2px}
+main.wrap{padding-top:28px;padding-bottom:64px}
+footer.wrap{padding-top:8px}
+.panel[hidden]{display:none}
+.lead{font-size:1.5rem;line-height:1.25;margin:0 0 6px;font-weight:650;max-width:30ch}
+.sub{margin:0 0 18px;color:var(--muted);max-width:62ch}
+form.search{display:flex;gap:8px;flex-wrap:wrap}
+form.search input[type=search]{flex:1 1 320px;min-width:0;font:inherit;padding:13px 14px;border:2px solid var(--line);border-radius:6px;background:#fff;color:var(--ink)}
+form.search input[type=search]:focus{border-color:var(--blue)}
+.btn{font:inherit;font-weight:600;padding:12px 20px;border-radius:6px;border:2px solid var(--blue);background:var(--blue);color:#fff;cursor:pointer}
+.btn:hover{background:var(--blue-d);border-color:var(--blue-d)}
+.btn.ghost{background:#fff;color:var(--blue)}
+.btn.ghost:hover{background:#eef5fb}
+.btn[disabled]{opacity:.6;cursor:progress}
+.examples{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0}
+.examples button{font:inherit;font-size:.9rem;padding:5px 12px;border:1px solid var(--line);background:#fff;border-radius:999px;cursor:pointer;color:var(--ink)}
+.examples button:hover{border-color:var(--blue);color:var(--blue)}
+details.opts{margin:16px 0 0;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+details.opts summary{cursor:pointer;font-weight:600}
+.grid-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:12px}
+label.f{display:block;font-size:.9rem;font-weight:600}
+label.f select{display:block;width:100%;margin-top:4px;font:inherit;padding:9px;border:1px solid var(--line);border-radius:6px;background:#fff}
+.hint{font-weight:400;color:var(--muted);font-size:.85rem;display:block;margin-top:3px}
+.status{margin:20px 0 0;padding:12px 14px;border-radius:6px;background:#fff;border-left:5px solid var(--blue)}
+.status.warn{border-left-color:var(--amber)}
+.status.err{border-left-color:var(--red)}
+.status b{font-weight:650}
+.results{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;margin-top:20px;list-style:none;padding:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
+.media{position:relative;background:#0c1218;aspect-ratio:16/9}
+.media video,.media img{width:100%;height:100%;object-fit:contain;display:block}
+.tag{position:absolute;top:8px;left:8px;background:rgba(12,18,24,.82);color:#fff;font-size:.78rem;padding:2px 8px;border-radius:4px;font-variant-numeric:tabular-nums}
+.tag.night{background:#2b2f6b}
+.body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px}
+.row{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.cam{font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.when{color:var(--muted);font-size:.85rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mix{display:flex;height:10px;border-radius:5px;overflow:hidden;background:#e3e7ea}
+.mix i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:.88rem;margin:0;padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:5px;font-variant-numeric:tabular-nums}
+.legend .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.none{color:var(--muted);font-size:.88rem}
+.match{font-size:.82rem;color:var(--muted)}
+.explain{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px 20px}
+.explain h2{margin:0 0 8px;font-size:1.1rem}
+.explain .txt{white-space:pre-wrap;max-width:74ch}
+.flags{margin:12px 0 0;padding:10px 14px;background:#fff6e5;border-left:5px solid var(--amber);border-radius:4px;font-size:.92rem}
+.flags.ok{background:#e9f5ee;border-left-color:var(--green)}
+.eval h2{font-size:1.15rem;margin:28px 0 6px}
+.eval h2:first-child{margin-top:0}
+.tbl{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden;font-variant-numeric:tabular-nums}
+.tbl th,.tbl td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);font-size:.93rem}
+.tbl th{background:#f4f6f8;font-weight:650}
+.tbl td.n,.tbl th.n{text-align:right}
+.tblwrap{overflow-x:auto}
+.bar{display:flex;align-items:center;gap:10px;margin:6px 0}
+.bar span.l{width:150px;flex:none;font-size:.92rem}
+.bar .track{flex:1;background:#dde2e6;height:16px;border-radius:4px;overflow:hidden}
+.bar .fill{height:100%;background:var(--blue)}
+.bar .fill.g{background:var(--green)}
+.bar b{width:52px;text-align:right;font-variant-numeric:tabular-nums}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 0}
+.stat{background:#fff;border:1px solid var(--line);border-radius:6px;padding:10px 16px;min-width:150px}
+.stat b{display:block;font-size:1.4rem;font-variant-numeric:tabular-nums}
+.limits{padding-left:20px;max-width:74ch}
+footer{color:var(--muted);font-size:.85rem;padding-bottom:32px}
+@media (max-width:520px){.results{grid-template-columns:1fr}.bar span.l{width:96px}.lead{font-size:1.25rem}}
+@media (prefers-reduced-motion:no-preference){.card{transition:box-shadow .15s}.card:hover{box-shadow:0 2px 10px rgba(23,33,43,.15)}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Traffic clip search</h1>
+  <nav role="tablist" aria-label="Sections">
+    <button role="tab" id="t-search" aria-selected="true" aria-controls="p-search">Search</button>
+    <button role="tab" id="t-eval" aria-selected="false" aria-controls="p-eval">How well it works</button>
+  </nav>
+</div></header>
+
+<main class="wrap">
+<section id="p-search" class="panel" role="tabpanel" aria-labelledby="t-search">
+  <h2 class="lead">Find moments in traffic footage by describing them</h2>
+  <p class="sub">Type what you want to see. The search understands vehicle counts, vehicle types, night or day, and empty or busy roads.</p>
+  <form class="search" id="form">
+    <input type="search" id="q" aria-label="Describe what you are looking for" placeholder="For example: more than 3 trucks at night" autocomplete="off">
+    <button class="btn" id="go" type="submit">Search clips</button>
+  </form>
+  <div class="examples" id="examples" aria-label="Example searches"></div>
+
+  <details class="opts">
+    <summary>Search options</summary>
+    <div class="grid-opts">
+      <label class="f">Footage to search
+        <select id="dataset">
+          <option value="indian_video">Indian traffic videos (3-second clips)</option>
+          <option value="indian">Indian street photos (UVH-26)</option>
+          <option value="detrac">Highway camera (UA-DETRAC)</option>
+        </select>
+      </label>
+      <label class="f">Only this camera
+        <select id="camera"><option value="">All cameras</option></select>
+      </label>
+      <label class="f">What to compare
+        <select id="mode">
+          <option value="both">Scene and vehicles together (recommended)</option>
+          <option value="frame">Whole scene</option>
+          <option value="crop">Individual vehicles</option>
+        </select>
+        <span class="hint">Scene finds the overall look, such as night or a crowded junction. Vehicles finds what a vehicle looks like, such as a bus.</span>
+      </label>
+      <label class="f">Number of results
+        <select id="topk"><option>3</option><option selected>6</option><option>9</option><option>12</option></select>
+      </label>
+      <label class="f"><span><input type="checkbox" id="smart" checked> Use smart understanding</span>
+        <span class="hint">Turns counts and conditions in your text into filters. Turn off to compare image similarity only.</span>
+      </label>
+    </div>
+  </details>
+
+  <div id="status" role="status" aria-live="polite"></div>
+  <ul class="results" id="results"></ul>
+  <div id="explainBar" hidden style="margin-top:20px">
+    <button class="btn ghost" id="explainBtn" type="button">Explain these results in plain language</button>
+  </div>
+  <div id="explain"></div>
+</section>
+
+<section id="p-eval" class="panel eval" role="tabpanel" aria-labelledby="t-eval" hidden>
+  <h2>Vehicle detection accuracy</h2>
+  <p class="sub">Measured on held-out Indian street photos. A higher score means the detector finds and labels vehicles more reliably. 1.00 would be perfect.</p>
+  <div id="detBars"></div>
+  <div class="tblwrap" id="detTable"></div>
+  <h2>Search quality</h2>
+  <p class="sub">How often the right images come back for each way of searching.</p>
+  <div class="tblwrap" id="retTable"></div>
+  <h2>What is indexed</h2>
+  <div class="stats" id="idx"></div>
+  <h2>Known limits</h2>
+  <ul class="limits">
+    <li>Vehicle counts come from an automatic detector, so they can be off in dense traffic or at night.</li>
+    <li>The Indian training photos contain no video, so tracking and clip search on videos was checked by eye, not scored.</li>
+    <li>Colour is easily lost when many vehicles are averaged together.</li>
+    <li>Explanations are written by an AI model from the detector's counts. They are checked automatically for numbers that do not match.</li>
+  </ul>
+</section>
+</main>
+<footer class="wrap">Internship project. Detection with YOLOv8, search with CLIP and Qdrant, explanations with Gemini.</footer>
+
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const CLASSES = ["car","bus","truck","auto_rickshaw","motorcycle","bicycle"];
+const NAMES = {car:"cars",bus:"buses",truck:"trucks",auto_rickshaw:"auto-rickshaws",motorcycle:"motorcycles",bicycle:"bicycles"};
+const EXAMPLES = ["more than 3 trucks at night","empty road in daylight","heavy traffic with buses","auto-rickshaws and motorcycles","no buses, only cars","crowded junction at night"];
+let lastReq = null, lastHits = [];
+
+function el(tag, cls, text){ const e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
+function setStatus(kind, parts){
+  const s=$("status"); s.replaceChildren();
+  if(!parts){ return; }
+  const d=el("div","status"+(kind?" "+kind:"")); parts.forEach(p=>d.append(p)); s.append(d);
+}
+async function api(path, opts){
+  let r;
+  try{ r = await fetch(path, opts); }
+  catch(e){ throw new Error("Cannot reach the server. Start it with: uvicorn src.api.main:app --port 8000"); }
+  const data = await r.json().catch(()=>({}));
+  if(!r.ok) throw new Error(data.detail || ("Request failed ("+r.status+")"));
+  return data;
+}
+function mediaUrl(p){ return "/media?path="+encodeURIComponent(p); }
+function niceCam(c){ return c ? c.replace(/[_-]+/g," ").replace(/\s+/g," ").trim() : "Unknown camera"; }
+function niceTime(t){
+  if(t==null || t==="") return "";
+  if(typeof t==="number") return t.toFixed(0)+" s";
+  const m=String(t).match(/(\d+):(\d+):(\d+)/); return m? m[0]: String(t);
+}
+
+/* tabs */
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll("nav button").forEach(x=>x.setAttribute("aria-selected", x===b));
+  $("p-search").hidden = b.id!=="t-search"; $("p-eval").hidden = b.id!=="t-eval";
+  if(b.id==="t-eval") loadMetrics();
+}));
+
+/* examples */
+EXAMPLES.forEach(t=>{ const b=el("button",null,t); b.type="button"; b.addEventListener("click",()=>{ $("q").value=t; run(); }); $("examples").append(b); });
+
+/* cameras */
+async function loadCameras(){
+  const sel=$("camera"); sel.replaceChildren(new Option("All cameras",""));
+  try{ const d=await api("/cameras?dataset="+$("dataset").value);
+       d.cameras.sort().forEach(c=>sel.append(new Option(niceCam(c), c))); }
+  catch(e){ /* the search itself will explain the problem */ }
+}
+$("dataset").addEventListener("change", loadCameras);
+
+/* results */
+function mixBar(counts){
+  const total=CLASSES.reduce((s,c)=>s+(counts[c]||0),0);
+  const wrap=el("div"); 
+  const bar=el("div","mix"); bar.setAttribute("role","img");
+  bar.setAttribute("aria-label", total? CLASSES.filter(c=>counts[c]).map(c=>counts[c]+" "+NAMES[c]).join(", ") : "No vehicles detected");
+  CLASSES.forEach(c=>{ if(counts[c]){ const i=document.createElement("i"); i.style.width=(100*counts[c]/total)+"%"; i.style.background="var(--"+c+")"; bar.append(i);} });
+  wrap.append(bar);
+  if(!total){ wrap.append(el("p","none","No vehicles detected")); return wrap; }
+  const ul=el("ul","legend");
+  CLASSES.forEach(c=>{ if(counts[c]){ const li=el("li"); const d=el("span","dot"); d.style.background="var(--"+c+")"; li.append(d, document.createTextNode(counts[c]+" "+(counts[c]===1? NAMES[c].replace(/s$/,"").replace("auto-rickshaw","auto-rickshaw"): NAMES[c]))); ul.append(li);} });
+  wrap.append(ul); return wrap;
+}
+function card(h, rank){
+  const li=el("li","card");
+  const m=el("div","media");
+  const isImg=/\.(jpe?g|png)$/i.test(h.clip_path||"");
+  if(isImg){ const i=document.createElement("img"); i.src=mediaUrl(h.clip_path); i.alt="Frame from "+niceCam(h.camera_id); i.loading="lazy"; m.append(i); }
+  else { const v=document.createElement("video"); v.src=mediaUrl(h.clip_path); v.controls=true; v.muted=true; v.loop=true; v.playsInline=true; v.preload="metadata"; v.setAttribute("aria-label","Clip "+rank+" from "+niceCam(h.camera_id)); m.append(v); }
+  m.append(el("span","tag"+(h.lighting==="night"?" night":""), "#"+rank+(h.lighting? " · "+h.lighting:"")));
+  const b=el("div","body");
+  const r=el("div","row"); r.append(el("span","cam",niceCam(h.camera_id)), el("span","when",niceTime(h.timestamp))); b.append(r);
+  b.append(mixBar(h.counts||{}));
+  b.append(el("div","match","Match "+Math.round((h.score||0)*100)+"%"));
+  li.append(m,b); return li;
+}
+async function run(){
+  const q=$("q").value.trim();
+  if(!q){ setStatus("warn",[el("b",null,"Type a description first. "), document.createTextNode("Try one of the examples below the search box.")]); $("q").focus(); return; }
+  const req={query:q,dataset:$("dataset").value,embedding_type:$("mode").value,top_k:+$("topk").value,rerank:$("smart").checked,camera_id:$("camera").value||null};
+  $("go").disabled=true; $("go").textContent="Searching…";
+  $("explain").replaceChildren(); $("explainBar").hidden=true;
+  setStatus("",[document.createTextNode("Searching…")]);
+  try{
+    const d=await api("/search",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(req)});
+    lastReq=req; lastHits=d.results;
+    const res=$("results"); res.replaceChildren();
+    if(!d.results.length){
+      setStatus("warn",[el("b",null,"No clips matched. "), document.createTextNode("Try fewer conditions, pick All cameras, or turn off smart understanding.")]); return;
+    }
+    const parts=[el("b",null,"Understood as: "), document.createTextNode(d.understood+". Showing "+d.results.length+" clip"+(d.results.length>1?"s":"")+".")];
+    if(d.relaxed) parts.push(el("div",null,"Nothing matched every condition, so these are the closest clips instead."));
+    setStatus(d.relaxed?"warn":"",parts);
+    d.results.forEach((h,i)=>res.append(card(h,i+1)));
+    $("explainBar").hidden=false;
+  }catch(e){ $("results").replaceChildren(); setStatus("err",[el("b",null,"Search failed. "), document.createTextNode(e.message)]); }
+  finally{ $("go").disabled=false; $("go").textContent="Search clips"; }
+}
+$("form").addEventListener("submit",e=>{ e.preventDefault(); run(); });
+
+/* explain */
+$("explainBtn").addEventListener("click", async ()=>{
+  if(!lastReq) return;
+  const b=$("explainBtn"); b.disabled=true; b.textContent="Writing explanation…";
+  const box=$("explain"); box.replaceChildren();
+  try{
+    const d=await api("/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...lastReq,max_clips:3})});
+    const wrap=el("div","explain"); wrap.append(el("h2",null,"What these clips show"), el("div","txt",d.summary));
+    const fl=d.flags||[];
+    const f=el("div","flags"+(fl.length?"":" ok"));
+    f.textContent = fl.length ? "Check before using: "+fl.join(" ") : "Every number in this explanation matches the detector's counts.";
+    wrap.append(f); box.append(wrap);
+  }catch(e){ const w=el("div","explain"); w.append(el("h2",null,"Could not write the explanation"), el("p",null,e.message)); box.append(w); }
+  finally{ b.disabled=false; b.textContent="Explain these results in plain language"; }
+});
+
+/* evaluation tab */
+let metricsLoaded=false;
+function num(x){ return typeof x==="number" && isFinite(x); }
+function pick(o, keys){ for(const k of keys){ if(num(o[k])) return o[k]; } return null; }
+function labelOf(d){ const l=(d.label||d.name||"").toString();
+  return ({coco_baseline:"Generic detector (before training)",detrac_ft:"Trained on highway footage",indian_ft:"Trained on Indian streets"})[l]||l||"Model"; }
+function table(rows){
+  const t=el("table","tbl"); const th=el("thead"), tr=el("tr");
+  rows[0].forEach((c,i)=>{ const x=el("th",i?"n":"",c); x.scope="col"; tr.append(x); }); th.append(tr); t.append(th);
+  const tb=el("tbody"); rows.slice(1).forEach(r=>{ const tr=el("tr"); r.forEach((c,i)=>tr.append(el("td",i?"n":"",c))); tb.append(tr); }); t.append(tb); return t;
+}
+async function loadMetrics(){
+  if(metricsLoaded) return;
+  try{
+    const m=await api("/metrics");
+    const bars=$("detBars"); bars.replaceChildren();
+    m.detection.forEach((d,i)=>{
+      const v=pick(d,["map","mAP","map50_95","mAP50-95","map_50_95","overall_map"]);
+      if(v==null) return;
+      const row=el("div","bar"); const tr=el("div","track"); const f=el("div","fill"+(i===m.detection.length-1?" g":"")); f.style.width=Math.min(100,v*100)+"%"; tr.append(f);
+      row.append(el("span","l",labelOf(d)), tr, el("b",null,v.toFixed(2))); bars.append(row);
+    });
+    if(!bars.children.length) bars.append(el("p","none","Detection results are not available yet. Run the evaluation step in the README."));
+    const dt=$("detTable"); dt.replaceChildren();
+    if(m.retrieval && m.retrieval.rows.length>1) $("retTable").replaceChildren(table(m.retrieval.rows));
+    else $("retTable").replaceChildren(el("p","none","Search results are not available yet. Run: python -m indian.retrieval eval"));
+    const idx=$("idx"); idx.replaceChildren();
+    const nm={indian_video:"Video clips",indian:"Street photos",detrac:"Highway clips"};
+    Object.entries(m.index||{}).forEach(([k,v])=>{ const s=el("div","stat"); s.append(el("b",null,String(v)), document.createTextNode(nm[k]||k)); idx.append(s); });
+    if(!idx.children.length) idx.append(el("p","none","Index counts need Qdrant running (docker-compose up -d)."));
+    metricsLoaded=true;
+  }catch(e){ $("detBars").replaceChildren(el("p","none",e.message)); }
+}
+loadCameras();
+</script>
+</body>
+</html>
