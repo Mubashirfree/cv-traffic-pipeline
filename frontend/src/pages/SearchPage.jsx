@@ -7,7 +7,7 @@ import { search, getCameras } from "../lib/api.js";
 
 const DEFAULT_OPTIONS = { dataset: "indian_video", camera: "", mode: "both", topK: 6, smart: true };
 
-export default function SearchPage({ header }) {
+export default function SearchPage({ header, libraryVersion, focusCamera }) {
   const [query, setQuery] = useState("");
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
   const [cameras, setCameras] = useState([]);
@@ -15,11 +15,15 @@ export default function SearchPage({ header }) {
   const [notice, setNotice] = useState(null);     // { kind: "info"|"warn"|"err", title, text }
   const [response, setResponse] = useState(null); // { hits, request, understood, relaxed }
 
-  // Reload the camera list when the footage source changes.
+  // Reload the video list when the footage source changes or the library changes.
   useEffect(() => {
-    setCameras([]);
-    getCameras(options.dataset).then((d) => setCameras([...d.cameras].sort())).catch(() => {});
-  }, [options.dataset]);
+    getCameras(options.dataset).then((d) => setCameras([...d.cameras].sort())).catch(() => setCameras([]));
+  }, [options.dataset, libraryVersion]);
+
+  // "Search this video" in the library jumps here with that video selected.
+  useEffect(() => {
+    if (focusCamera) setOptions((o) => ({ ...o, dataset: "indian_video", camera: focusCamera }));
+  }, [focusCamera]);
 
   async function run(text) {
     const q = (text ?? query).trim();

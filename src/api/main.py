@@ -8,11 +8,12 @@ from typing import Optional
 ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(ROOT))
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
+from src.library import store, worker
 from src.retrieval import service
 
 app = FastAPI(title="Traffic Video Search")
@@ -38,6 +39,63 @@ class AnalyzeReq(SearchReq):
 DIST = ROOT / "frontend" / "dist"          # built React app (npm run build in frontend/)
 if (DIST / "assets").exists():
     app.mount("/assets", StaticFiles(directory=DIST / "assets"), name="assets")
+
+
+MAX_UPLOAD = 4 * 1024 ** 3        # 4 GB per video
+
+
+@app.on_event("startup")
+def _start_worker():
+    worker.start()
+
+
+@app.get("/library")
+def library():
+    return {"items": store.list_items()}
+
+
+@app.post("/library/upload")
+async def library_upload(request: Request, name: str):
+    """One video per request, sent as the raw request body (no multipart dependency). Processing runs in the background."""
+    ext = Path(name).suffix.lower()
+    if ext not in store.ALLOWED:
+        raise HTTPException(400, f"Unsupported file type. Use one of: {', '.join(sorted(store.ALLOWED))}")
+    if int(request.headers.get("content-length") or 0) > MAX_UPLOAD:
+        raise HTTPException(413, "The file is larger than 4 GB.")
+    vid = store.make_id(name)
+    store.new_upload(vid, Path(name).stem)
+    store.write_meta(vid, status="uploading", stage="Uploading")
+    store.VID_DIR.mkdir(parents=True, exist_ok=True)
+    dest, written = store.VID_DIR / f"{vid}{ext}", 0
+    try:
+        with open(dest, "wb") as f:
+            async for chunk in request.stream():
+                written += len(chunk)
+                if written > MAX_UPLOAD:
+                    raise HTTPException(413, "The file is larger than 4 GB.")
+                f.write(chunk)
+        if written == 0:
+            raise HTTPException(400, "The file is empty.")
+    except BaseException:
+        dest.unlink(missing_ok=True)
+        (store.META_DIR / f"{vid}.json").unlink(missing_ok=True)
+        raise
+    worker.enqueue(vid)
+    return store.item(vid)
+
+
+@app.delete("/library/{vid}")
+def library_delete(vid: str):
+    if not store.valid_id(vid) or not store.exists(vid):
+        raise HTTPException(404, "Video not found.")
+    if store.item(vid)["status"] in ("uploading", "queued", "processing"):
+        raise HTTPException(409, "This video is still being processed. Delete it when it finishes.")
+    try:
+        client = service.get_client()
+    except Exception:
+        client = None
+    store.delete(vid, client)
+    return {"deleted": vid}
 
 
 @app.get("/")

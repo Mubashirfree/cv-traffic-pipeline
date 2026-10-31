@@ -12,9 +12,9 @@ export default function FilterBar({ options, setOptions, cameras }) {
           {DATASETS.map((d) => <option key={d.value} value={d.value}>{d.label}</option>)}
         </select>
       </label>
-      <label className="field">Camera
+      <label className="field">Video
         <select value={options.camera} onChange={set("camera")}>
-          <option value="">All cameras</option>
+          <option value="">All videos</option>
           {cameras.map((c) => <option key={c} value={c}>{niceCamera(c)}</option>)}
         </select>
       </label>
