@@ -166,8 +166,10 @@ To retrain the detector on UVH-26, run `python -m indian.download`, then `python
 
 ### Credits
 
-The detector was trained on UVH-26 (IISc Bangalore) and evaluated against a pretrained COCO model and a UA-DETRAC model. CLIP comes from OpenCLIP, detection and tracking from Ultralytics YOLOv8 and ByteTrack. Sample clips used in the demo came from Pexels, and their authors deserve credit.
+The detector was trained on the UVH-26 dataset from the Indian Institute of Science (IISc), Bangalore, which is released under the CC BY 4.0 licence. Citation: Sharma et al., "Towards Image Annotations and Accurate Vision Models for Indian Traffic, Preliminary Dataset Release, UVH-26-v1.0", IISc technical report, arXiv:2511.02563, 2025. Dataset page: https://huggingface.co/datasets/iisc-aim/UVH-26
+
+It was compared with a pretrained COCO model and with a model trained on UA-DETRAC. Text and image matching uses OpenCLIP; detection and tracking use Ultralytics YOLOv8 and ByteTrack. The demo clips came from Pexels, which allows free use without attribution. They are not included in this repository.
 
 ### Known limits
 
-Vehicle counts come from the detector and can be wrong in dense traffic, fog or darkness. UVH-26 contains photos, not video, so clip search was checked by eye rather than scored. 
+Vehicle counts come from the detector and can be wrong in dense traffic, fog or darkness. UVH-26 contains photos, not video, so clip search was checked by eye rather than scored.
