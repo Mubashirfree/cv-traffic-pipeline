@@ -170,4 +170,4 @@ The detector was trained on UVH-26 (IISc Bangalore) and evaluated against a pret
 
 ### Known limits
 
-Vehicle counts come from the detector and can be wrong in dense traffic, fog or darkness. UVH-26 contains photos, not video, so clip search was checked by eye rather than scored. Sample clips from Pexels need credit to their authors.
+Vehicle counts come from the detector and can be wrong in dense traffic, fog or darkness. UVH-26 contains photos, not video, so clip search was checked by eye rather than scored. 
