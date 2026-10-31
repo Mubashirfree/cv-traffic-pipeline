@@ -11,3 +11,4 @@ indian_run*.log
 node_modules/
 frontend/dist/
 apply_*.sh
+HANDOFF.md

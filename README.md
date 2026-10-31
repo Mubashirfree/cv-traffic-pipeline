@@ -160,4 +160,4 @@ To retrain the detector on UVH-26, run `python -m indian.download`, then `python
 
 ### Known limits
 
-Vehicle counts come from the detector and can be wrong in dense traffic, fog or darkness. UVH-26 contains photos, not video, so clip search was checked by eye rather than scored. 
+Vehicle counts come from the detector and can be wrong in dense traffic, fog or darkness. UVH-26 contains photos, not video, so clip search was checked by eye rather than scored. Sample clips from Pexels need credit to their authors.
