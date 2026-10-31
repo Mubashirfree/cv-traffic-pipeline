@@ -74,23 +74,25 @@ This takes a few minutes because PyTorch is large. Your prompt starts with `(ven
 
 ### Step 4. Start Qdrant
 
-Open Docker Desktop first and wait until it says it is running, then:
+Qdrant is the database that holds the searchable clips. It runs in Docker, and the file `docker-compose.yml` in this repository already describes it, so there is nothing to configure.
+
+Start Docker first. On Windows and macOS that means opening Docker Desktop and waiting until it says it is running. On Linux the Docker service starts by itself, or with `sudo systemctl start docker`. Then run:
 
 ```
 docker compose up -d
 ```
 
-Older Docker installs use `docker-compose` with a hyphen. Check it worked by opening http://localhost:6333/dashboard.
+Older Docker installs use `docker-compose` with a hyphen. Check it worked by opening http://localhost:6333/dashboard. The data is kept in a Docker volume, so it survives restarts. Stop it with `docker compose stop`.
 
 ### Step 5. Add your Gemini key (optional)
 
-Copy the example settings file and put your key in it. Without a key everything works except the written reports.
+The app reads its settings from a file called `.env`. The repository contains `.env.example`, which has no real values, so you copy it and fill in your own.
 
 Linux, macOS or WSL: `cp .env.example .env`
 
 Windows (PowerShell): `copy .env.example .env`
 
-Then open `.env` and set `GEMINI_API_KEY=` to your key. Never commit this file.
+Open `.env` in any text editor and set `GEMINI_API_KEY=` to your key. You can create a free key at https://aistudio.google.com/apikey. The key is only used for the "Write a report" button; without it everything else works. `.env` is ignored by git, so it will not be uploaded. Never commit it or share it.
 
 ### Step 6. Build the web page
 
@@ -113,9 +115,13 @@ Open http://localhost:8000. The first start downloads the CLIP model, about 350 
 
 ## Using it
 
+A fresh install starts empty. The videos you see in the author's demo are not in the repository, so add your own first.
+
 1. **Library tab.** Drag in one or more videos (MP4, MOV, AVI, MKV or WEBM). Each one is cut into 3-second clips and analysed in the background, and the card shows its progress. A GPU makes this much faster, but it runs on a CPU too. Videos stay in the library the next time you start the app.
 2. **Search tab.** Describe what you want to see. To look inside one video, choose it in the Video filter. "Write a report on these results" asks Gemini for a short summary.
 3. **How well it works tab.** The measured detector and search results.
+
+The Footage options "Indian street photos" and "Highway camera" on the Search tab are indexes built from the UVH-26 and UA-DETRAC datasets. They are empty on a fresh install. See the contributor section if you want to build them.
 
 ## If something goes wrong
 
@@ -157,6 +163,10 @@ python -m indian.retrieval eval                         # image search scores
 ```
 
 To retrain the detector on UVH-26, run `python -m indian.download`, then `python -m indian.to_yolo`, then train with Ultralytics using `data/uvh26_yolo/data.yaml`. The datasets are large and are not stored in this repository. `requirements-full.txt` is a full `pip freeze` from the author's Linux machine, for exact reproduction there.
+
+### Credits
+
+The detector was trained on UVH-26 (IISc Bangalore) and evaluated against a pretrained COCO model and a UA-DETRAC model. CLIP comes from OpenCLIP, detection and tracking from Ultralytics YOLOv8 and ByteTrack. Sample clips used in the demo came from Pexels, and their authors deserve credit.
 
 ### Known limits
 
