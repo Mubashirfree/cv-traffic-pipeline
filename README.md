@@ -23,80 +23,107 @@ flowchart LR
 
 Counts such as "at least 4 trucks" or "no buses" are read from the query and applied as filters on the detector output. The rest of the query is matched visually with CLIP. The report step sends the top clips and their counts to Gemini and checks the numbers in its answer against the detector.
 
-## Quick start (using the project)
+## Setup
 
-The trained detector weights are included in `models/`, so there is nothing to train. You need:
+The trained detector weights are included in `models/`, so there is nothing to train. Setup is seven short steps. Steps 2, 4, 6 and 7 are the same on every system; steps 1, 3 and 5 differ a little.
 
-- Python 3.10 or newer
-- Node.js 18 or newer
-- ffmpeg
-- Docker (runs Qdrant, the search database)
-- Optional: a free Gemini API key for the written reports
+The project was developed and tested on Ubuntu under WSL2. The macOS and native Windows commands use the same tools, but the author has not run them yet.
 
-Developed and tested on Ubuntu under WSL2. The Windows and macOS steps below use the same tools, but the author has not run them.
+### Step 1. Install the tools
 
-### Linux, or Windows through WSL2
+You need Python 3.10 or newer, Node.js 18 or newer, Git, ffmpeg and Docker. Docker runs Qdrant, the database that stores the searchable clips. A free Gemini API key is optional and only needed for the written reports.
 
-```bash
-sudo apt install -y ffmpeg python3-venv
+| System | Commands |
+| --- | --- |
+| Linux, or Windows with WSL2 | `sudo apt install -y git ffmpeg python3-venv`, then install Node with [nvm](https://github.com/nvm-sh/nvm). Install Docker Desktop on Windows and turn on its WSL integration. |
+| macOS | `brew install git ffmpeg node python`, then install [Docker Desktop](https://www.docker.com/products/docker-desktop/) |
+| Windows (PowerShell) | `winget install Python.Python.3.12 OpenJS.NodeJS.LTS Git.Git Gyan.FFmpeg Docker.DockerDesktop`, then open a new terminal |
+
+With WSL2, install Node inside Linux. The Windows copy of `npm` does not work from a WSL shell.
+
+Check it worked: `python3 --version`, `node --version`, `ffmpeg -version` and `docker --version` all print a version (use `python` instead of `python3` on Windows).
+
+### Step 2. Get the code
+
+```
 git clone https://github.com/Mubashirfree/cv-traffic-pipeline.git
 cd cv-traffic-pipeline
+```
+
+### Step 3. Create a virtual environment and install the Python packages
+
+The virtual environment keeps this project's packages separate from the rest of your system.
+
+Linux, macOS or WSL:
+
+```
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-docker compose up -d
-cp .env.example .env            # then put your key in GEMINI_API_KEY (optional)
-cd frontend && npm install && npm run build && cd ..
-uvicorn src.api.main:app --port 8000
 ```
 
-With WSL2, install Node inside Linux (for example with nvm). The Windows copy of `npm` will not work from a WSL shell.
+Windows (PowerShell):
 
-### macOS
-
-```bash
-brew install ffmpeg node python
-git clone https://github.com/Mubashirfree/cv-traffic-pipeline.git
-cd cv-traffic-pipeline
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-docker compose up -d            # needs Docker Desktop running
-cp .env.example .env
-cd frontend && npm install && npm run build && cd ..
-uvicorn src.api.main:app --port 8000
 ```
-
-### Windows (PowerShell, no WSL)
-
-Install Python, Node.js, Git and Docker Desktop from their websites, then ffmpeg with `winget install Gyan.FFmpeg`. Open a new terminal and run:
-
-```powershell
-git clone https://github.com/Mubashirfree/cv-traffic-pipeline.git
-cd cv-traffic-pipeline
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
+```
+
+This takes a few minutes because PyTorch is large. Your prompt starts with `(venv)` when the environment is active. On Windows the default PyTorch uses the CPU only. With an NVIDIA GPU, install the CUDA build from [pytorch.org](https://pytorch.org) as well.
+
+### Step 4. Start Qdrant
+
+Open Docker Desktop first and wait until it says it is running, then:
+
+```
 docker compose up -d
-copy .env.example .env
+```
+
+Older Docker installs use `docker-compose` with a hyphen. Check it worked by opening http://localhost:6333/dashboard.
+
+### Step 5. Add your Gemini key (optional)
+
+Copy the example settings file and put your key in it. Without a key everything works except the written reports.
+
+Linux, macOS or WSL: `cp .env.example .env`
+
+Windows (PowerShell): `copy .env.example .env`
+
+Then open `.env` and set `GEMINI_API_KEY=` to your key. Never commit this file.
+
+### Step 6. Build the web page
+
+```
 cd frontend
 npm install
 npm run build
 cd ..
+```
+
+This creates `frontend/dist`, which the server hands to your browser.
+
+### Step 7. Start the server
+
+```
 uvicorn src.api.main:app --port 8000
 ```
 
-The default PyTorch on Windows runs on the CPU only. If you have an NVIDIA GPU, install the CUDA build from pytorch.org before the last step.
+Open http://localhost:8000. The first start downloads the CLIP model, about 350 MB, so it can pause for a minute.
 
-### Using it
+## Using it
 
-Open http://localhost:8000.
+1. **Library tab.** Drag in one or more videos (MP4, MOV, AVI, MKV or WEBM). Each one is cut into 3-second clips and analysed in the background, and the card shows its progress. A GPU makes this much faster, but it runs on a CPU too. Videos stay in the library the next time you start the app.
+2. **Search tab.** Describe what you want to see. To look inside one video, choose it in the Video filter. "Write a report on these results" asks Gemini for a short summary.
+3. **How well it works tab.** The measured detector and search results.
 
-1. **Library:** drag in one or more videos (MP4, MOV, AVI, MKV or WEBM). Each is cut into clips and analysed in the background. A GPU makes this much faster, but it also runs on a CPU. Uploaded videos stay in the library the next time you start the app.
-2. **Search:** describe what you want. Pick a single video in the Video filter if you like. Press "Write a report on these results" for a short summary.
-3. **How well it works:** the measured detector and search results.
+## If something goes wrong
 
-The first start downloads the CLIP model, about 350 MB.
+- **"Cannot reach the server"** in the page: the `uvicorn` command is not running.
+- **Search failed, Qdrant not found:** Docker Desktop is closed. Open it and run step 4 again.
+- **A video card says Failed:** the message on the card says why. A missing `ffmpeg` is the usual cause.
+- **`npm install` fails with `UNC paths are not supported` in WSL:** that is the Windows npm. Install Node inside Linux (step 1).
+- **The page looks old after an update:** rebuild with step 6 and hard-refresh the browser (Ctrl+Shift+R).
 
 ## Contributing and development
 
