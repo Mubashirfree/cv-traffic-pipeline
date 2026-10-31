@@ -1,0 +1,29 @@
+:root {
+  --navy: #0b2540;
+  --navy-2: #123a63;
+  --ink: #0f1b2a;
+  --muted: #5b6b7c;
+  --bg: #f3f5f8;
+  --card: #ffffff;
+  --line: #e2e7ed;
+  --blue: #0b5fa5;
+  --yellow: #f5b301;
+  --yellow-d: #dc9f00;
+  --green: #1c7c4f;
+  --green-bg: #e7f5ee;
+  --amber: #a85f00;
+  --amber-bg: #fff4de;
+  --red: #b3261e;
+  --red-bg: #fdeceb;
+
+  /* vehicle classes */
+  --car: #0b5fa5;
+  --bus: #d97706;
+  --truck: #7c4dbd;
+  --auto_rickshaw: #1c7c4f;
+  --motorcycle: #dc4a12;
+  --bicycle: #0e8aa6;
+
+  --radius: 16px;
+  --shadow: 0 1px 2px rgba(15, 27, 42, .06), 0 8px 24px rgba(15, 27, 42, .07);
+}

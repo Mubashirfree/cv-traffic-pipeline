@@ -8,3 +8,6 @@ __pycache__/
 *.zip
 apply_frontend.sh
 indian_run*.log
+node_modules/
+frontend/dist/
+apply_*.sh

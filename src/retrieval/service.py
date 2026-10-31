@@ -19,7 +19,7 @@ from src.embeddings.clip_encoder import embed_text, embed_text_ensemble
 from src.storage.qdrant_client import get_client, COLLECTION_NAME
 
 COLLECTIONS = {"detrac": COLLECTION_NAME, "indian": "uvh26_items", "indian_video": "indian_clips"}
-FRAME_W, CROP_W = 0.7, 0.3
+FRAME_W, CROP_W = 0.7, 0.3        # weights for embedding_type="both"
 
 EMPTY_WORDS = ["empty", "hardly any", "few vehicles", "no traffic", "clear road", "light traffic", "quiet",
                "deserted", "no vehicles", "free flowing", "free-flowing", "sparse"]
@@ -37,6 +37,10 @@ CLASS_WORDS = {
     "bicycle": ["bicycles", "bicycle", "cycles", "cycle", "cyclists", "cyclist"],
     "person": ["people", "person", "pedestrians", "pedestrian"],
 }
+ONLY_WORDS = ["only", "just", "mostly", "mainly", "predominantly", "exclusively"]
+ONLY_SHARE = 0.7        # "only cars" = at least 70% of detected vehicles are cars (detector counts are noisy)
+PLURAL = {"car": "cars", "bus": "buses", "truck": "trucks", "auto_rickshaw": "auto-rickshaws",
+          "motorcycle": "motorcycles", "bicycle": "bicycles", "person": "people"}
 NUMWORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10}
 QUANT = {"many": 4, "several": 3, "lots of": 5, "a lot of": 5, "a few": 2, "couple of": 2, "a couple of": 2, "multiple": 2}
 
@@ -81,15 +85,31 @@ def parse_intent(query):
             continue
         if re.search(rf"\b(?:{alt})\b", ql):
             classes[cls] = {"min": 1, "exclude": False}
+    only = set()
+    only_alt = "|".join(ONLY_WORDS)
+    for cls, words in CLASS_WORDS.items():
+        if cls == "person" or (cls in classes and classes[cls]["exclude"]):
+            continue
+        alt = "|".join(re.escape(w) for w in sorted(words, key=len, reverse=True))
+        if re.search(rf"\b(?:{only_alt})\s+(?:\w+\s+)?(?:{alt})\b", ql) or re.search(rf"\b(?:{alt})\s+only\b", ql):
+            only.add(cls)
+            classes.setdefault(cls, {"min": 1, "exclude": False})
     return {"empty": _has(ql, EMPTY_WORDS), "heavy": _has(ql, HEAVY_WORDS), "night": _has(ql, NIGHT_WORDS),
-            "day": _has(ql, DAY_WORDS) and not _has(ql, NIGHT_WORDS), "classes": classes}
+            "day": _has(ql, DAY_WORDS) and not _has(ql, NIGHT_WORDS), "classes": classes, "only": sorted(only)}
 
 
 def describe_intent(intent):
     parts = []
     for c, r in intent["classes"].items():
-        name = c.replace("_", " ")
-        parts.append(f"no {name}" if r["exclude"] else (f"at least {r['min']} {name}" if r["min"] > 1 else f"{name} present"))
+        name = PLURAL.get(c, c)
+        if r["exclude"]:
+            parts.append(f"no {name}")
+        elif c in intent.get("only", []):
+            parts.append(f"mostly {name}")
+        elif r["min"] > 1:
+            parts.append(f"at least {r['min']} {name}")
+        else:
+            parts.append(f"{name} present")
     if intent["night"]:
         parts.append("night")
     if intent["day"]:
@@ -101,12 +121,20 @@ def describe_intent(intent):
     return ", ".join(parts) if parts else "visual description only"
 
 
+def _only_share(h, intent):
+    total = sum(h["counts"].values())
+    return sum(h["counts"].get(c, 0) for c in intent["only"]) / total if total else 0.0
+
+
 def _passes(h, intent):
     for c, r in intent["classes"].items():
         n = h["counts"].get(c, 0)
         if r["exclude"] and n > 0:
             return False
         if not r["exclude"] and n < r["min"]:
+            return False
+    if intent.get("only"):
+        if _only_share(h, intent) < ONLY_SHARE:
             return False
     lt = h.get("lighting")
     if lt:
@@ -127,6 +155,8 @@ def _meta_score(h, intent, max_total):
     for c, r in intent["classes"].items():
         if not r["exclude"]:
             parts.append(min(h["counts"].get(c, 0) / max(3.0, r["min"]), 1.0))
+    if intent.get("only"):
+        parts.append(_only_share(h, intent))
     if intent["night"]:
         parts.append({"night": 1.0, "day": 0.0}.get(h.get("lighting"), 0.5))
     if intent["day"]:
@@ -184,14 +214,15 @@ def search_ex(query, dataset="detrac", embedding_type="frame", camera_id=None, z
         if kept or not hits:
             hits = kept
         else:
-            relaxed = True
+            relaxed = True              # nothing satisfies the conditions: show closest instead
     if hits:
         lo, hi = min(h["clip_score"] for h in hits), max(h["clip_score"] for h in hits)
         max_total = max(sum(h["counts"].values()) for h in hits)
         for h in hits:
             cs = (h["clip_score"] - lo) / (hi - lo) if hi > lo else 1.0
             m = _meta_score(h, intent, max_total) if rerank else None
-            h["score"] = round(cs if m is None else 0.25 * cs + 0.75 * m, 4)
+            w = 0.5 if intent["empty"] else 0.25       # 'empty road': zero detections can be misses, trust the image more
+            h["score"] = round(cs if m is None else w * cs + (1 - w) * m, 4)
         hits.sort(key=lambda h: -h["score"])
     return {"hits": hits[:top_k], "understood": describe_intent(intent) if rerank else "pure visual similarity",
             "relaxed": relaxed}

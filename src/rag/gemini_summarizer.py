@@ -7,7 +7,7 @@ sys.path.insert(0, str(ROOT))
 
 from dotenv import load_dotenv
 
-from src.rag.prompt_templates import build_prompt
+from src.rag.prompt_templates import build_prompt, parse_report, report_to_text
 from src.retrieval.service import keyframe_jpeg
 
 load_dotenv(ROOT / ".env")
@@ -29,7 +29,7 @@ def summarize(query, hits, max_clips=3):
     from google.genai import types
     hits = hits[:max_clips]
     if not hits:
-        return {"summary": "No matching clips were found.", "clips_used": [], "model": None}
+        return {"summary": "No matching clips were found.", "report": None, "clips_used": [], "model": None}
     client = genai.Client()
     parts = [build_prompt(query, hits)]
     used = []
@@ -42,11 +42,15 @@ def summarize(query, hits, max_clips=3):
             parts.append(f"(keyframe for Result {i} unavailable: {e})")
     name = model_name()
     last = None
-    for attempt in range(4):
+    for attempt in range(4):                      # retry transient 429/503 errors
         try:
             resp = client.models.generate_content(model=name, contents=parts,
-                                                  config=types.GenerateContentConfig(temperature=0.2))
-            return {"summary": (resp.text or "").strip(), "clips_used": used, "model": name}
+                                                  config=types.GenerateContentConfig(
+                                                      temperature=0.2, response_mime_type="application/json"))
+            text = (resp.text or "").strip()
+            report = parse_report(text)
+            summary = report_to_text(report) if report else re.sub(r"\*\*", "", text)
+            return {"summary": summary, "report": report, "clips_used": used, "model": name}
         except Exception as e:
             last = e
             time.sleep(3 * (attempt + 1))

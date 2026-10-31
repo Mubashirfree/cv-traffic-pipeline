@@ -10,6 +10,7 @@ sys.path.insert(0, str(ROOT))
 
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, Response
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from src.retrieval import service
@@ -34,9 +35,17 @@ class AnalyzeReq(SearchReq):
     max_clips: int = 3
 
 
+DIST = ROOT / "frontend" / "dist"          # built React app (npm run build in frontend/)
+if (DIST / "assets").exists():
+    app.mount("/assets", StaticFiles(directory=DIST / "assets"), name="assets")
+
+
 @app.get("/")
 def home():
-    return FileResponse(ROOT / "web" / "index.html")
+    built = DIST / "index.html"
+    if built.exists():
+        return FileResponse(built)
+    return FileResponse(ROOT / "web" / "index.html")   # plain-HTML fallback if the React app is not built
 
 
 @app.get("/health")
